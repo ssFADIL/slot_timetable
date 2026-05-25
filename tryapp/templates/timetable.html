@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Timetable</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f4f4f8;
+            margin: 0;
+            padding: 24px;
+        }
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: white;
+            padding: 24px;
+            border-radius: 12px;
+            box-shadow: 0 10px 24px rgba(0,0,0,.08);
+        }
+        h1 {
+            margin-top: 0;
+            color: #333;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 16px;
+        }
+        th, td {
+            padding: 12px 14px;
+            text-align: left;
+            border-bottom: 1px solid #e1e3e8;
+        }
+        th {
+            background: #f0f4ff;
+            color: #1a1f4d;
+        }
+        tr:hover {
+            background: #f9fbff;
+        }
+        .empty {
+            padding: 20px;
+            color: #555;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Class Timetable</h1>
+
+        {% if timetable %}
+            <table>
+                <thead>
+                    <tr>
+                        <th>Day</th>
+                        <th>Subject</th>
+                        <th>Teacher</th>
+                        <th>Start</th>
+                        <th>End</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for item in timetable %}
+                        <tr>
+                            <td>{{ item.day }}</td>
+                            <td>{{ item.subject }}</td>
+                            <td>{{ item.teacher }}</td>
+                            <td>{{ item.start_time }}</td>
+                            <td>{{ item.end_time }}</td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        {% else %}
+            <div class="empty">
+                No timetable entries found. Add some items to the database and refresh.
+            </div>
+        {% endif %}
+    </div>
+</body>
+</html>
